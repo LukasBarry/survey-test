@@ -11,7 +11,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Stealz Survey API</h1>
         </header>
-        <Survey />
+        <div><Survey /></div>
       </div>
     );
   }

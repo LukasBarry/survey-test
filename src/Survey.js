@@ -4,7 +4,7 @@ class Survey extends Component {
   constructor() {
     super();
     this.state = {
-      survey: {},
+      survey: null,
     };
   }
   
@@ -20,9 +20,11 @@ class Survey extends Component {
   
   render() {
     return (
-      <div className='survey'>
+      <div>
         {this.state.survey}
       </div>
     )
   }
 };
+
+export default Survey;
