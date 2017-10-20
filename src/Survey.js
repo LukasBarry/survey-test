@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
+/* global fetch */
+import React, { Component } from 'react'
 
 class Survey extends Component {
-  constructor() {
-    super();
+  constructor () {
+    super()
     this.state = {
-      survey: null,
-    };
+      survey: null
+    }
   }
-  
-  componentWillMount() {
-    fetch('localhost:3001/surveys/new?user[email]=lukasbbarry@gmail.com&beacon[major]=590')
-    .then(results => {
-      return results.json();
-    }).then(data => {
-      let survey = data.results
-      this.setState({survey: survey});
-    })
-  }
-  
-  render() {
-    return (
-      <div>
-        {this.state.survey}
-      </div>
-    )
-  }
-};
 
-export default Survey;
+  componentWillMount () {
+    fetch('http://localhost:3001/surveys/new.json?user[email]=lukasbbarry@gmail.com&beacon[major]=590')
+      .then(results => results.json())
+      .then(data => {
+        let survey = data.survey.questions.map((question) => {
+          return <p key={question.id}><strong>{question.text}</strong></p>
+        })
+        this.setState({ survey })
+      })
+  }
+
+  render () {
+    return <div>{this.state.survey}</div>
+  }
+}
+
+export default Survey

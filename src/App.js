@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import Survey from './Survey'
-import './App.css';
+import './App.css'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Stealz Survey API</h1>
         </header>
-        <div><Survey /></div>
+        <div>
+          <Survey />
+        </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
