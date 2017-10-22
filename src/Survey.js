@@ -2,10 +2,12 @@
 import React, { Component } from 'react'
 
 class Survey extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      survey: null
+      survey: null,
+      email: null,
+      major: null
     }
   }
 
@@ -14,7 +16,11 @@ class Survey extends Component {
       .then(results => results.json())
       .then(data => {
         let survey = data.survey.questions.map((question) => {
-          return <p key={question.id}><strong>{question.text}</strong></p>
+          return(
+              <div key={question.id}>
+                  <p>{question.text}</p>
+              </div>
+          )
         })
         this.setState({ survey })
       })
