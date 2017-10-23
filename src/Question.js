@@ -1,28 +1,35 @@
 /* global fetch */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import OpenQuestion from './OpenQuestion'
+import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 
 class Question extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            survey: null,
-            question: null,
-            firstQuestion: null,
-            nextQuestion: null
-        }
-  }
-
-    componentWillMount() {
-        fetch('http://localhost:3001/surveys/new.json?user[email]=lukasbbarry@gmail.com&beacon[major]=590')
-            .then(results => results.json())
-            .then(data => {
-                let survey = data.survey.questions.map((question) => {
-                    return <p key={question.id}>{question.text}</p>
-                })
-                this.setState({ survey })
-            })
+    render() {
+        let question = this.props.question;
+        return(
+            <div>
+                <p>{question.text}</p>
+                { question.type !== 'OpenQuestion'  &&
+                    <div>
+                        <MultipleChoiceQuestion question={this.state.currentQuestion}
+                                                nextQuestion={this.saveResponse} />
+                    </div>
+                }
+                { question.type === 'OpenQuestion'  &&
+                    <div>
+                        <OpenQuestion question={this.state.currentQuestion}
+                                      nextQuestion={this.saveResponse} />
+                    </div>
+                }
+            </div>
+        );
     }
+}
 
+Question.propTypes = {
+    nextQuestion: PropTypes.func,
+    question: PropTypes.object
 }
 
 export default Question;

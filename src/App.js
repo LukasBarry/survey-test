@@ -10,7 +10,7 @@ class App extends Component {
           <h1 className="App-title">Stealz Survey API</h1>
         </header>
         <div>
-          <Survey email='lukasbbarry@gmail.com' major='590'/>
+          <Survey />
         </div>
       </div>
     )
