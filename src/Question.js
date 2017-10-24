@@ -7,29 +7,26 @@ import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 class Question extends Component {
     render() {
         let question = this.props.question;
-        return(
-            <div>
-                <p>{question.text}</p>
-                { question.type !== 'OpenQuestion'  &&
-                    <div>
-                        <MultipleChoiceQuestion question={this.state.currentQuestion}
-                                                nextQuestion={this.saveResponse} />
-                    </div>
-                }
-                { question.type === 'OpenQuestion'  &&
-                    <div>
-                        <OpenQuestion question={this.state.currentQuestion}
-                                      nextQuestion={this.saveResponse} />
-                    </div>
-                }
-            </div>
-        );
+        switch (question.type) {
+        case 'OpenQuestion':
+            return (
+                <OpenQuestion
+                    question={question}
+                    nextQuestion={this.props.nextQuestion} />
+            )
+        default:
+            return (
+                <MultipleChoiceQuestion
+                    question={question}
+                    nextQuestion={this.props.nextQuestion} />
+            )
+        }
     }
 }
 
 Question.propTypes = {
     nextQuestion: PropTypes.func,
-    question: PropTypes.object
+    question: PropTypes.object,
 }
 
 export default Question;

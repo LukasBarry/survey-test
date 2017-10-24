@@ -43,6 +43,7 @@ class Survey extends Component {
                           nextQuestion={this.saveResponse} />
             )
         } else {
+            console.log(this.state.responses);
             return <div>End of Survey</div>;
         }
   }
