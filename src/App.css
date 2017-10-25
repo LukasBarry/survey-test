@@ -26,6 +26,12 @@
   margin-bottom: 10px;
 }
 
+#dropdown {
+  width: 50%;
+  height: 200px;
+  margin: 0 auto;
+}
+
 .smiley_faces {
   height: 70px;
   width: 70px;

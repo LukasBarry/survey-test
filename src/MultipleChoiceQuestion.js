@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import MoodQuestion from './MoodQuestion'
+import ProductQuestion from './ProductQuestion';
 
 class MultipleChoiceQuestion extends Component {
     render() {
@@ -14,24 +15,9 @@ class MultipleChoiceQuestion extends Component {
             )
         case 'ProductQuestion':
             return (
-                <form>
-                    <h3>{question.text}</h3>
-                    {question.multiple_choice_answers.map((answer) =>
-                        <div key={answer.id}>
-                            <input type='radio'
-                                   name='multiple_choice_answer_id'
-                                   value={answer.id}
-                                   onChange={() =>
-                                       this.props.nextQuestion(
-                                           { "question_id": question.id,
-                                             "multiple_choice_answer_id": answer.id},
-                                           answer.next_question_id
-                                       )
-                                   }/>
-                            {answer.text}
-                        </div>
-                    )}
-                </form>
+                <ProductQuestion
+                    question={question}
+                    nextQuestion={this.props.nextQuestion}/>
             )
         case 'SliderQuestion':
             return (
