@@ -36,6 +36,18 @@ class Survey extends Component {
         this.setState({ currentQuestion: question });
     }
 
+    submitSurvey() {
+        fetch('http://localhost:3001/surveys.json?user[email]=lukasbbarry@gmail.com&beacon[major]=590', {
+            method: 'post',
+            headers: {'Content-Type':'application/json'},
+            body: {
+                survey: {
+                    responses_attributes: this.state.responses
+                }
+            }
+        })
+    }
+
     render () {
         if (this.state.currentQuestion) {
             return(
@@ -43,10 +55,14 @@ class Survey extends Component {
                           nextQuestion={this.saveResponse} />
             )
         } else {
-            console.log(this.state.responses);
-            return <div>End of Survey</div>;
+            return(
+                <div>
+                    {this.submitSurvey}
+                    Thank you for taking our survey!
+                </div>
+            )
         }
-  }
+    }
 }
 
 export default Survey
