@@ -58,7 +58,7 @@ class Survey extends Component {
             return(
                 <div>
                     {this.submitSurvey}
-                    Thank you for taking our survey!
+                    <h3>Thank you for taking our survey!</h3>
                 </div>
             )
         }

@@ -6,7 +6,7 @@ class MultipleChoiceQuestion extends Component {
         let question = this.props.question;
         return(
             <form>
-                <p>{question.text}</p>
+                <h3>{question.text}</h3>
                 {question.multiple_choice_answers.map((answer) =>
                     <div key={answer.id}>
                         <input type='radio'

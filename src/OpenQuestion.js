@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Button from 'react-bootstrap/lib/Button';
+import FormControl from 'react-bootstrap/lib/FormControl';
 
 class OpenQuestion extends Component {
     constructor(props) {
@@ -23,12 +25,16 @@ class OpenQuestion extends Component {
         let question = this.props.question;
         return(
             <div>
-                <p>{question.text}</p>
-                <textarea onChange={this.handleChange}></textarea>
+                <h3>{question.text}</h3>
+                <FormControl componentClass="textarea"
+                             onChange={this.handleChange}
+                             id='text_box'/>
                 <br></br>
-                <button onClick={() => this.onClick(question)}>
+                <Button bsStyle="primary"
+                        bsSize="large"
+                        onClick={() => this.onClick(question)}>
                     Next
-                </button>
+                </Button>
             </div>
         );
     }
