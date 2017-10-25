@@ -23,6 +23,13 @@
 #text_box {
   width: 50%;
   margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.smiley_faces {
+  height: 70px;
+  width: 70px;
+  padding: 10px;
 }
 
 body {

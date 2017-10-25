@@ -18,7 +18,6 @@ class OpenQuestion extends Component {
         this.props.nextQuestion({ "question_id": question.id,
                                   "open_answer": this.state.value },
                                 question.next_question_id)
-        this.onClick = this.onClick.bind(this);
     }
 
     render() {
@@ -29,7 +28,6 @@ class OpenQuestion extends Component {
                 <FormControl componentClass="textarea"
                              onChange={this.handleChange}
                              id='text_box'/>
-                <br></br>
                 <Button bsStyle="primary"
                         bsSize="large"
                         onClick={() => this.onClick(question)}>

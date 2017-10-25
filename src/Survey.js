@@ -57,7 +57,7 @@ class Survey extends Component {
         } else {
             return(
                 <div>
-                    {this.submitSurvey}
+                    {/* {this.submitSurvey} */}
                     <h3>Thank you for taking our survey!</h3>
                 </div>
             )
