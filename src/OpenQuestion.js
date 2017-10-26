@@ -23,11 +23,11 @@ class OpenQuestion extends Component {
     render() {
         let question = this.props.question;
         return(
-            <div>
+            <div key={question.id}>
                 <h3>{question.text}</h3>
                 <FormControl componentClass="textarea"
                              onChange={this.handleChange}
-                             id='text_box'/>
+                             className='text_box'/>
                 <Button bsStyle="primary"
                         bsSize="large"
                         onClick={() => this.onClick(question)}>

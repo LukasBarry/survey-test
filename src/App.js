@@ -7,7 +7,7 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <Jumbotron id='header'>Stealz Survey API</Jumbotron>
+        <Jumbotron className='header'>Stealz Survey API</Jumbotron>
         <div>
           <Survey />
         </div>

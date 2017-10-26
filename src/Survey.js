@@ -1,7 +1,7 @@
 /* global fetch */
-
 import _ from 'lodash'
 import React, { Component } from 'react'
+import Button from 'react-bootstrap/lib/Button';
 import Question from './Question'
 
 class Survey extends Component {
@@ -12,6 +12,8 @@ class Survey extends Component {
             email: null,
             major: null,
             responses: [],
+            loading: true,
+            success: null,
         }
         this.saveResponse = this.saveResponse.bind(this);
     }
@@ -34,6 +36,9 @@ class Survey extends Component {
     selectQuestion(questionId){
         let question = _.find(this.state.survey.questions, ['id', questionId]);
         this.setState({ currentQuestion: question });
+        if (!question) {
+            this.submitSurvey()
+        }
     }
 
     submitSurvey() {
@@ -45,7 +50,17 @@ class Survey extends Component {
                     responses_attributes: this.state.responses
                 }
             }
-        })
+        }).then(results => results.json())
+          .then(data => {
+              let survey = data.survey;
+              let success = this.state.success
+              if (success) {
+                  this.setState({ success: true });
+
+              }
+              this.setState({ survey });
+              this.selectQuestion(survey.first_question_id);
+          });
     }
 
     render () {
@@ -56,10 +71,11 @@ class Survey extends Component {
             )
         } else {
             return(
-                <div>
-                    {/* {this.submitSurvey} */}
-                    <h3>Thank you for taking our survey!</h3>
-                </div>
+                <Button bsStyle="primary"
+                        bsSize="large"
+                        onClick={() => this.submitSurvey()}>
+                    Submit Survey
+                </Button>
             )
         }
     }

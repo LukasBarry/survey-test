@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import MoodQuestion from './MoodQuestion'
 import ProductQuestion from './ProductQuestion';
+import SliderQuestion from './SliderQuestion'
+import Radio from 'react-bootstrap/lib/Radio';
 
 class MultipleChoiceQuestion extends Component {
     render() {
@@ -21,45 +23,29 @@ class MultipleChoiceQuestion extends Component {
             )
         case 'SliderQuestion':
             return (
-                <form>
-                    <h3>{question.text}</h3>
-                    {question.multiple_choice_answers.map((answer) =>
-                        <div key={answer.id}>
-                            <input type='radio'
-                                   name='multiple_choice_answer_id'
-                                   value={answer.id}
-                                   onChange={() =>
-                                       this.props.nextQuestion(
-                                           { "question_id": question.id,
-                                             "multiple_choice_answer_id": answer.id},
-                                           answer.next_question_id
-                                       )
-                                   }/>
-                            {answer.text}
-                        </div>
-                    )}
-                </form>
+                <SliderQuestion
+                    question={question}
+                    nextQuestion={this.props.nextQuestion}/>
             )
         default:
             return (
-                <form>
+                <div>
                     <h3>{question.text}</h3>
-                    {question.multiple_choice_answers.map((answer) =>
-                        <div key={answer.id}>
-                            <input type='radio'
-                                   name='multiple_choice_answer_id'
-                                   value={answer.id}
+                    {question.multiple_choice_answers.map((answer) => {
+                        return (
+                            <Radio key={answer.id}
                                    onChange={() =>
                                        this.props.nextQuestion(
                                            { "question_id": question.id,
                                              "multiple_choice_answer_id": answer.id},
                                            answer.next_question_id
                                        )
-                                   }/>
-                            {answer.text}
-                        </div>
-                    )}
-                </form>
+                                   }>
+                                {answer.text}
+                            </Radio>
+                        )
+                    })}
+                </div>
             );
         }
     }

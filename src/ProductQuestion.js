@@ -16,7 +16,7 @@ class MultipleChoiceQuestion extends Component {
             <div>
                 <h3>{question.text}</h3>
                 <FormGroup controlId="formControlsSelectMultiple">
-                    <FormControl id='dropdown' componentClass="select" multiple>
+                    <FormControl className='dropdown' componentClass="select" multiple>
                         {question.multiple_choice_answers.map((answer) => {
                             return (
                                 <option key={answer.id}

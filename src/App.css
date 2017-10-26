@@ -14,22 +14,37 @@
   color: white;
 }
 
-#header {
+.header {
   background: #3498db;
   color: white;
   font-size: 50px;
 }
 
-#text_box {
+.text_box {
   width: 50%;
   margin: 0 auto;
   margin-bottom: 10px;
 }
 
-#dropdown {
+.dropdown {
   width: 50%;
   height: 200px;
   margin: 0 auto;
+}
+
+.slider {
+  width: 30%;
+  display: inline-block;
+}
+
+.left {
+  padding-right: 15px;
+  font-size: 20px;
+}
+
+.right {
+  padding-left: 15px;
+  font-size: 20px;
 }
 
 .smiley_faces {
