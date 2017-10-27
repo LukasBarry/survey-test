@@ -1,7 +1,6 @@
 /* global fetch */
 import _ from 'lodash'
 import React, { Component } from 'react'
-import Button from 'react-bootstrap/lib/Button';
 import Question from './Question'
 
 class Survey extends Component {
@@ -12,8 +11,8 @@ class Survey extends Component {
             email: null,
             major: null,
             responses: [],
-            loading: true,
             success: null,
+            failure: null
         }
         this.saveResponse = this.saveResponse.bind(this);
     }
@@ -42,25 +41,30 @@ class Survey extends Component {
     }
 
     submitSurvey() {
-        fetch('http://localhost:3001/surveys.json?user[email]=lukasbbarry@gmail.com&beacon[major]=590', {
-            method: 'post',
-            headers: {'Content-Type':'application/json'},
-            body: {
+        fetch('http://localhost:3001/surveys', {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                user: {
+                    email: 'lukasbbarry@gmail.com'
+                },
+                beacon: {
+                    major: 590
+                },
                 survey: {
                     responses_attributes: this.state.responses
                 }
+            })
+        }).then((response) => {
+            if (response.status === 200) {
+                this.setState({ success: true })
+            } else {
+                this.setState({ failure: true })
             }
-        }).then(results => results.json())
-          .then(data => {
-              let survey = data.survey;
-              let success = this.state.success
-              if (success) {
-                  this.setState({ success: true });
-
-              }
-              this.setState({ survey });
-              this.selectQuestion(survey.first_question_id);
-          });
+        })
     }
 
     render () {
@@ -70,13 +74,19 @@ class Survey extends Component {
                           nextQuestion={this.saveResponse} />
             )
         } else {
-            return(
-                <Button bsStyle="primary"
-                        bsSize="large"
-                        onClick={() => this.submitSurvey()}>
-                    Submit Survey
-                </Button>
-            )
+            if (this.state.success) {
+                return(
+                    <div>Thank you for taking our survey</div>
+                )
+            } else if (this.state.failure) {
+                return(
+                    <div>I&apos;m sorry, something went wrong</div>
+                )
+            } else {
+                return(
+                    <div>Loading...</div>
+                )
+            }
         }
     }
 }

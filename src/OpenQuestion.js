@@ -7,11 +7,18 @@ class OpenQuestion extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { value: null };
+        this.state = {
+            value: null,
+            showButton: false
+        };
     }
 
     handleChange(e) {
+        var characterCount = e.target.value;
         this.setState({ value: e.target.value });
+        if (characterCount.length > 10) {
+            this.setState({showButton: true})
+        }
     }
 
     onClick(question) {
@@ -28,11 +35,13 @@ class OpenQuestion extends Component {
                 <FormControl componentClass="textarea"
                              onChange={this.handleChange}
                              className='text_box'/>
-                <Button bsStyle="primary"
-                        bsSize="large"
-                        onClick={() => this.onClick(question)}>
-                    Next
-                </Button>
+                {this.state.showButton
+                    ?<Button bsStyle="primary"
+                            bsSize="large"
+                            onClick={() => this.onClick(question)}>
+                        Next
+                    </Button>
+                    : null}
             </div>
         );
     }
