@@ -1,11 +1,33 @@
+/* global _ */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import MoodQuestion from './MoodQuestion'
 import ProductQuestion from './ProductQuestion';
 import SliderQuestion from './SliderQuestion'
-import Radio from 'react-bootstrap/lib/Radio';
+import Checkbox from 'react-bootstrap/lib/Checkbox';
+import Button from 'react-bootstrap/lib/Button';
 
 class MultipleChoiceQuestion extends Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.state = { answer: null };
+    }
+
+    handleChange(e) {
+        const answerId = parseInt(e.target.value);
+        const answer = _.find(this.props.question.multiple_choice_answers, ['id', answerId]);
+        this.setState({ answer });
+    }
+
+    onClick() {
+        const answer = this.state.answer;
+        this.props.nextQuestion({ "question_id": this.props.question.id,
+                                  "multiple_choice_answer_id": answer.id },
+                                answer.next_question_id);
+    }
+
     render() {
         let question = this.props.question;
         switch (question.type) {
@@ -33,18 +55,19 @@ class MultipleChoiceQuestion extends Component {
                     <h3>{question.text}</h3>
                     {question.multiple_choice_answers.map((answer) => {
                         return (
-                            <Radio key={answer.id}
-                                   onChange={() =>
-                                       this.props.nextQuestion(
-                                           { "question_id": question.id,
-                                             "multiple_choice_answer_id": answer.id},
-                                           answer.next_question_id
-                                       )
-                                   }>
-                                {answer.text}
-                            </Radio>
+                            <div key={answer.id}>
+                                <Checkbox value={answer.id}
+                                          onChange={this.handleChange}>
+                                    {answer.text}
+                                </Checkbox>
+                            </div>
                         )
                     })}
+                    <Button bsStyle="primary"
+                            bsSize="large"
+                            onClick={this.onClick}>
+                        Next
+                    </Button>
                 </div>
             );
         }

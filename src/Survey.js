@@ -69,21 +69,21 @@ class Survey extends Component {
 
     render () {
         if (this.state.currentQuestion) {
-            return(
+            return (
                 <Question question={this.state.currentQuestion}
                           nextQuestion={this.saveResponse} />
             )
         } else {
             if (this.state.success) {
-                return(
+                return (
                     <div>Thank you for taking our survey</div>
                 )
             } else if (this.state.failure) {
-                return(
+                return (
                     <div>I&apos;m sorry, something went wrong</div>
                 )
             } else {
-                return(
+                return (
                     <div>Loading...</div>
                 )
             }

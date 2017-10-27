@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from 'react-bootstrap/lib/Button';
+import ConditionalButton from './ConditionalButton'
 import FormControl from 'react-bootstrap/lib/FormControl';
 
 class OpenQuestion extends Component {
@@ -17,7 +17,7 @@ class OpenQuestion extends Component {
         var characterCount = e.target.value;
         this.setState({ value: e.target.value });
         if (characterCount.length > 10) {
-            this.setState({showButton: true})
+            this.setState({ showButton: true })
         }
     }
 
@@ -29,19 +29,16 @@ class OpenQuestion extends Component {
 
     render() {
         let question = this.props.question;
-        return(
+        return (
             <div key={question.id}>
                 <h3>{question.text}</h3>
                 <FormControl componentClass="textarea"
                              onChange={this.handleChange}
                              className='text_box'/>
-                {this.state.showButton
-                    ?<Button bsStyle="primary"
-                            bsSize="large"
-                            onClick={() => this.onClick(question)}>
-                        Next
-                    </Button>
-                    : null}
+                <ConditionalButton condition={this.state.showButton}
+                                   onClick={this.onClick(question)}>
+                    Next
+                </ConditionalButton>
             </div>
         );
     }

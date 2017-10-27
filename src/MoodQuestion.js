@@ -30,7 +30,7 @@ class MoodQuestion extends Component {
                              onClick={() =>
                                  this.props.nextQuestion(
                                      { "question_id": question.id,
-                                       "multiple_choice_answer_id": answer.id},
+                                       "multiple_choice_answer_id": answer.id },
                                      answer.next_question_id
                             )
                         }/>
