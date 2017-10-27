@@ -3,13 +3,7 @@ import PropTypes from 'prop-types'
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 
-class MultipleChoiceQuestion extends Component {
-    onClick(question) {
-        this.props.nextQuestion({ "question_id": question.id,
-                                  "open_answer": this.state.value },
-                                question.next_question_id)
-    }
-
+class ProductQuestion extends Component {
     render() {
         let question = this.props.question;
         return (
@@ -39,9 +33,9 @@ class MultipleChoiceQuestion extends Component {
     }
 }
 
-MultipleChoiceQuestion.propTypes = {
+ProductQuestion.propTypes = {
     nextQuestion: PropTypes.func,
     question: PropTypes.object
 }
 
-export default MultipleChoiceQuestion;
+export default ProductQuestion;

@@ -70,7 +70,8 @@ class Survey extends Component {
     render () {
         if (this.state.currentQuestion) {
             return (
-                <Question question={this.state.currentQuestion}
+                <Question key={this.state.currentQuestion.id}
+                          question={this.state.currentQuestion}
                           nextQuestion={this.saveResponse} />
             )
         } else {
