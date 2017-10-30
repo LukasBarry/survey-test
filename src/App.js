@@ -3,10 +3,10 @@ import Survey from './Survey'
 import './App.css'
 import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 
-class App extends Component {
+export default class App extends Component {
   render () {
     return (
-      <div className="App">
+      <div className='App'>
         <Jumbotron className='header'>Stealz Survey API</Jumbotron>
         <div>
           <Survey />
@@ -15,5 +15,3 @@ class App extends Component {
     )
   }
 }
-
-export default App

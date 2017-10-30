@@ -2,9 +2,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Radio from 'react-bootstrap/lib/Radio';
-import Button from 'react-bootstrap/lib/Button';
+import ConditionalButton from './ConditionalButton';
 
-class MultipleChoiceQuestion extends Component {
+export default class MultipleChoiceQuestion extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -24,8 +24,8 @@ class MultipleChoiceQuestion extends Component {
 
     onClick() {
         const answer = this.state.answer;
-        this.props.nextQuestion({ "question_id": this.props.question.id,
-                                  "multiple_choice_answer_id": answer.id },
+        this.props.nextQuestion({ 'question_id': this.props.question.id,
+                                  'multiple_choice_answer_id': answer.id },
                                 answer.next_question_id);
     }
 
@@ -40,16 +40,12 @@ class MultipleChoiceQuestion extends Component {
                                name='answers'
                                value={answer.id}
                                onChange={this.handleChange}>
-                            {answer.text}
+                            <span className='radio'>{answer.text}</span>
                         </Radio>
                     )
                 })}
-                <Button style={{ display: this.state.showButton ? 'inline' : 'none' }}
-                        bsStyle="primary"
-                        bsSize="large"
-                        onClick={this.onClick}>
-                    Next
-                </Button>
+                <ConditionalButton condition={this.state.showButton}
+                                   onClick={this.onClick} />
             </div>
         );
     }
@@ -59,5 +55,3 @@ MultipleChoiceQuestion.propTypes = {
     nextQuestion: PropTypes.func,
     question: PropTypes.object
 }
-
-export default MultipleChoiceQuestion;

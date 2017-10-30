@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ConditionalButton from './ConditionalButton';
 
-class OpenQuestion extends Component {
+export default class OpenQuestion extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -22,9 +22,10 @@ class OpenQuestion extends Component {
         }
     }
 
-    onClick(question) {
-        this.props.nextQuestion({ "question_id": question.id,
-                                  "open_answer": this.state.value },
+    onClick() {
+        const question = this.props.question;
+        this.props.nextQuestion({ 'question_id': question.id,
+                                  'open_answer': this.state.value },
                                 question.next_question_id)
     }
 
@@ -33,13 +34,12 @@ class OpenQuestion extends Component {
         return (
             <div key={question.id}>
                 <h3>{question.text}</h3>
-                <FormControl componentClass="textarea"
+                <FormControl componentClass='textarea'
                              onChange={this.handleChange}
                              className='text_box'/>
+                <span className='clearfix'>10 character minimum</span>
                 <ConditionalButton condition={this.state.showButton}
-                                   onClick={this.onClick}
-                                   question={question}
-                                   nextQuestion={this.props.nextQuestion}/>
+                                   onClick={this.onClick} />
             </div>
         );
     }
@@ -50,5 +50,3 @@ OpenQuestion.propTypes = {
     nextQuestion: PropTypes.func,
     question: PropTypes.object
 }
-
-export default OpenQuestion;

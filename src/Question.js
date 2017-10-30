@@ -7,7 +7,7 @@ import SliderQuestion from './SliderQuestion'
 import MoodQuestion from './MoodQuestion'
 import MultipleChoiceQuestion from './MultipleChoiceQuestion'
 
-class Question extends Component {
+export default class Question extends Component {
     render() {
         let question = this.props.question;
         switch (question.type) {
@@ -49,5 +49,3 @@ Question.propTypes = {
     nextQuestion: PropTypes.func,
     question: PropTypes.object,
 }
-
-export default Question;

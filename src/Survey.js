@@ -3,7 +3,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import Question from './Question'
 
-class Survey extends Component {
+export default class Survey extends Component {
     constructor (props) {
         super(props)
         this.state = {
@@ -18,7 +18,7 @@ class Survey extends Component {
     }
 
     componentWillMount () {
-        fetch('http://localhost:3001/surveys/new.json?user[email]=lukasbbarry@gmail.com&beacon[major]=590')
+        fetch('/surveys/new.json?user[email]=lukasbbarry@gmail.com&beacon[major]=590')
             .then(results => results.json())
             .then(data => {
                 let survey = data.survey;
@@ -41,7 +41,7 @@ class Survey extends Component {
     }
 
     submitSurvey() {
-        fetch('http://localhost:3001/surveys', {
+        fetch('/surveys', {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json',
@@ -91,5 +91,3 @@ class Survey extends Component {
         }
     }
 }
-
-export default Survey

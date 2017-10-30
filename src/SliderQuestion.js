@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/lib/Button';
 
-class SliderQuestion extends Component {
+export default class SliderQuestion extends Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
@@ -16,8 +16,8 @@ class SliderQuestion extends Component {
     onClick() {
         const question = this.props.question;
         const answer = question.multiple_choice_answers[this.state.position]
-        this.props.nextQuestion({ "question_id": question.id,
-                                  "multiple_choice_answer_id": answer.id },
+        this.props.nextQuestion({ 'question_id': question.id,
+                                  'multiple_choice_answer_id': answer.id },
                                 answer.next_question_id)
     }
 
@@ -27,13 +27,13 @@ class SliderQuestion extends Component {
             <form>
                 <span className='left'>Very Dissatisfied</span>
                 <input className='slider'
-                       type="range"
+                       type='range'
                        max={question.multiple_choice_answers.length - 1}
                        onChange={this.handleChange} />
                 <span className='right'>Highly satisfied</span>
                 <br></br>
-                <Button bsStyle="primary"
-                        bsSize="large"
+                <Button bsStyle='primary'
+                        bsSize='large'
                         onClick={this.onClick}>
                     Next
                 </Button>
@@ -47,5 +47,3 @@ SliderQuestion.propTypes = {
     nextQuestion: PropTypes.func,
     question: PropTypes.object
 }
-
-export default SliderQuestion;

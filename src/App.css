@@ -47,6 +47,10 @@
   font-size: 20px;
 }
 
+.radio {
+  padding-left: 5px;
+}
+
 .smiley_faces {
   height: 70px;
   width: 70px;
