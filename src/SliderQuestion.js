@@ -1,16 +1,25 @@
+/* global _ */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from 'react-bootstrap/lib/Button';
+import ConditionalButton from './ConditionalButton'
 
 export default class SliderQuestion extends Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.state = {
+            answer: null,
+            showButton: false
+        };
     }
 
     handleChange(event) {
-        this.setState({ position: event.target.value });
+        const answerId = parseInt(event.target.value);
+        const answer = _.find(this.props.question.multiple_choice_answers, ['id', answerId]);
+        this.setState({ answer,
+                        showButton: true,
+                        position: event.target.value });
     }
 
     onClick() {
@@ -28,15 +37,13 @@ export default class SliderQuestion extends Component {
                 <span className='left'>Very Dissatisfied</span>
                 <input className='slider'
                        type='range'
+                       defaultValue={2}
                        max={question.multiple_choice_answers.length - 1}
                        onChange={this.handleChange} />
                 <span className='right'>Highly satisfied</span>
                 <br></br>
-                <Button bsStyle='primary'
-                        bsSize='large'
-                        onClick={this.onClick}>
-                    Next
-                </Button>
+                <ConditionalButton condition={this.state.showButton}
+                                   onClick={this.onClick} />
             </form>
 
         )
