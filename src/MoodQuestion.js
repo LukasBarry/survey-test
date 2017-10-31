@@ -18,7 +18,7 @@ export default class MoodQuestion extends Component {
     }
 
     handleChange(e) {
-        const answerId = parseInt(e.target.getAttribute('data-value'));
+        const answerId = parseInt(e.target.getAttribute('data-value'), 10);
         const answer = _.find(this.props.question.multiple_choice_answers, ['id', answerId]);
         this.setState({ answer,
                         showButton: true });

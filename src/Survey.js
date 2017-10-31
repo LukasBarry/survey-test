@@ -23,7 +23,7 @@ export default class Survey extends Component {
             .then(data => {
                 let survey = data.survey;
                 this.setState({ survey });
-                this.selectQuestion(4677);
+                this.selectQuestion(survey.first_question_id);
             });
     }
 

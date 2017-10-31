@@ -36,15 +36,14 @@ export default class ProductQuestion extends Component {
         const answer = _.find(this.props.question.multiple_choice_answers, ['id', answerId]);
         this.setState({ showButton: true,
                         next_question_id: answer.next_question_id,
-                        selectedProducts: products,
-                        filter: '' })
+                        selectedProducts: products })
     }
 
     onClick() {
         const next_question_id = this.state.next_question_id;
         this.props.nextQuestion(
             { 'question_id': this.props.question.id,
-              'multiple_choice_answer_id': this.state.selectedProducts.map((product) => product['value']
+              'multiple_choice_answer_ids': this.state.selectedProducts.map((product) => product['value']
         )}, next_question_id);
     }
 

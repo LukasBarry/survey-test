@@ -15,7 +15,7 @@ export default class SliderQuestion extends Component {
     }
 
     handleChange(event) {
-        const answerId = parseInt(event.target.value);
+        const answerId = parseInt(event.target.value, 10);
         const answer = _.find(this.props.question.multiple_choice_answers, ['id', answerId]);
         this.setState({ answer,
                         showButton: true,
