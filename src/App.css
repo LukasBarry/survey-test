@@ -59,6 +59,11 @@
   border: 3px solid #1a4c6e;
 }
 
+.tags {
+  text-align: center;
+  margin: 3px;
+}
+
 .radio {
   padding-left: 5px;
 }

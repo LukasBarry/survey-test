@@ -73,20 +73,20 @@ export default class ProductQuestion extends Component {
                 </div>
                 <div className="product col-md-5">
                     {selectedProducts.length === 0 && <p>(nothing selected yet)</p>}
-                    {selectedProducts.length > 0 && <ul>
-                        <div>
-                            {selectedProducts.map((product, i) => {
-                                return (
+                    {selectedProducts.length > 0 && <div>
+                        {selectedProducts.map((product, i) => {
+                            return (
+                                <div key={product['value']}
+                                     className='tags'>
                                     <span className='tag'
-                                          key={product['value']}
                                           style={{cursor: 'pointer'}}
                                           onClick={() => this.handleDeselect(i)}>
                                         {`${product['text']} `} &times;
                                     </span>
-                                )}
+                                </div>
                             )}
-                        </div>
-                    </ul>}
+                        )}
+                    </div>}
                     {selectedProducts.length > 0 &&
                         <button className="btn btn-default"
                                 onClick={this.handleClearSelection}>

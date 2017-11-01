@@ -59,7 +59,7 @@ export default class Survey extends Component {
                 }
             })
         }).then((response) => {
-            if (response.status === 200) {
+            if (response.status === 201) {
                 this.setState({ success: true })
             } else {
                 this.setState({ failure: true })
@@ -77,11 +77,11 @@ export default class Survey extends Component {
         } else {
             if (this.state.success) {
                 return (
-                    <div>Thank you for taking our survey</div>
+                    <h3>Thank you for taking our survey</h3>
                 )
             } else if (this.state.failure) {
                 return (
-                    <div>I&apos;m sorry, something went wrong</div>
+                    <h3>I&apos;m sorry, something went wrong</h3>
                 )
             } else {
                 return (

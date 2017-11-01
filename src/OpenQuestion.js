@@ -17,7 +17,7 @@ export default class OpenQuestion extends Component {
     handleChange(e) {
         var characterCount = e.target.value;
         this.setState({ value: e.target.value });
-        if (characterCount.length > 10) {
+        if (characterCount.length > 20) {
             this.setState({ showButton: true })
         }
     }
@@ -37,7 +37,7 @@ export default class OpenQuestion extends Component {
                 <FormControl componentClass='textarea'
                              onChange={this.handleChange}
                              className='text_box'/>
-                <span className='clearfix'>10 character minimum</span>
+                <span className='clearfix'>20 character minimum</span>
                 <ConditionalButton condition={this.state.showButton}
                                    onClick={this.onClick} />
             </div>
