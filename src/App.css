@@ -14,10 +14,15 @@
   color: white;
 }
 
+.survey {
+  margin-top: 15px;
+}
+
 .header {
   background: #3498db;
   color: white;
   font-size: 50px;
+  height: 150px;
 }
 
 .text_box {
@@ -75,6 +80,11 @@
 .list {
   width: 400px;
   margin: 0 auto;
+}
+
+.stealz {
+  height: 150px;
+  width: 300px;
 }
 
 .smiley_faces {
