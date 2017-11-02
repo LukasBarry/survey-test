@@ -1,9 +1,9 @@
 /* global _ */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Happy from './images/happy.jpg'
-import Indifferent from './images/neutral.jpg'
-import Sad from './images/sad.jpg'
+import Happy from './images/happy.png'
+import Indifferent from './images/neutral.png'
+import Sad from './images/sad.png'
 import ConditionalButton from './ConditionalButton'
 
 export default class MoodQuestion extends Component {

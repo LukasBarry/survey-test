@@ -1,7 +1,9 @@
 /* global _ */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Radio from 'react-bootstrap/lib/Radio';
+import Button from 'react-bootstrap/lib/Button';
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import ConditionalButton from './ConditionalButton';
 
 export default class MultipleChoiceQuestion extends Component {
@@ -36,14 +38,21 @@ export default class MultipleChoiceQuestion extends Component {
                 <h3>{question.text}</h3>
                 {question.multiple_choice_answers.map((answer) => {
                     return (
-                        <Radio key={answer.id}
-                               name='answers'
-                               value={answer.id}
-                               onChange={this.handleChange}>
-                            <span className='radio'>{answer.text}</span>
-                        </Radio>
+                        <ListGroup key={answer.id}
+                                   className='list'>
+                            <ListGroupItem className='group'>
+                                <Button value={answer.id}
+                                        bsStyle="primary"
+                                        onClick={this.handleChange}
+                                        className='choice'
+                                        block>
+                                    {answer.text}
+                                </Button>
+                            </ListGroupItem>
+                        </ListGroup>
                     )
                 })}
+                <br></br>
                 <ConditionalButton condition={this.state.showButton}
                                    onClick={this.onClick} />
             </div>

@@ -64,8 +64,17 @@
   margin: 3px;
 }
 
-.radio {
-  padding-left: 5px;
+.choice {
+  margin: 0 auto;
+}
+
+.group {
+  background-color: #DCDCDC;
+}
+
+.list {
+  width: 400px;
+  margin: 0 auto;
 }
 
 .smiley_faces {
