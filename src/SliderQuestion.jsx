@@ -34,21 +34,24 @@ export default class SliderQuestion extends Component {
   render() {
     const { question } = this.props;
     return (
-      <form>
-        <span className="left">Very Dissatisfied</span>
-        <input
-          className="slider"
-          type="range"
-          defaultValue={2}
-          max={question.multiple_choice_answers.length - 1}
-          onChange={this.handleChange} />
-        <span className="right">Highly satisfied</span>
+      <div>
+        <h3>{question.text}</h3>
         <br />
-        <ConditionalButton
-          condition={this.state.showButton}
-          onClick={this.onClick} />
-      </form>
-
+        <form>
+          <span className="left">Very Dissatisfied</span>
+          <input
+            className="slider"
+            type="range"
+            defaultValue={2}
+            max={question.multiple_choice_answers.length - 1}
+            onChange={this.handleChange} />
+          <span className="right">Highly satisfied</span>
+          <br />
+          <ConditionalButton
+            condition={this.state.showButton}
+            onClick={this.onClick} />
+        </form>
+      </div>
     );
   }
 }
@@ -58,11 +61,11 @@ SliderQuestion.propTypes = {
   question: PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-    multiple_choice_answers: PropTypes.oneOfType({
+    multiple_choice_answers: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       text: PropTypes.string.isRequired,
       position: PropTypes.number.isRequired,
-    }),
+    })),
     maxChars: PropTypes.number,
   }).isRequired,
 };

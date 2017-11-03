@@ -71,8 +71,7 @@ export default class Survey extends Component {
         <Question
           key={this.state.currentQuestion.id}
           question={this.state.currentQuestion}
-          nextQuestion={this.saveResponse}
-        />
+          nextQuestion={this.saveResponse} />
       );
     } else if (this.state.success) {
       return (

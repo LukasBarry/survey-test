@@ -6,44 +6,37 @@ import SliderQuestion from './SliderQuestion';
 import MoodQuestion from './MoodQuestion';
 import MultipleChoiceQuestion from './MultipleChoiceQuestion';
 
-export default function Question(props) {
-  const { question } = props;
-  const { nextQuestion } = props;
+export default function Question({ question, nextQuestion }) {
   switch (question.type) {
     case 'OpenQuestion':
       return (
         <OpenQuestion
           question={question}
-          nextQuestion={nextQuestion}
-        />
+          nextQuestion={nextQuestion} />
       );
     case 'MoodQuestion':
       return (
         <MoodQuestion
           question={question}
-          nextQuestion={nextQuestion}
-        />
+          nextQuestion={nextQuestion} />
       );
     case 'ProductQuestion':
       return (
         <ProductQuestion
           question={question}
-          nextQuestion={nextQuestion}
-        />
+          nextQuestion={nextQuestion} />
       );
     case 'SliderQuestion':
       return (
         <SliderQuestion
           question={question}
-          nextQuestion={nextQuestion}
-        />
+          nextQuestion={nextQuestion} />
       );
     default:
       return (
         <MultipleChoiceQuestion
           question={question}
-          nextQuestion={nextQuestion}
-        />
+          nextQuestion={nextQuestion} />
       );
   }
 }
@@ -53,10 +46,11 @@ Question.propTypes = {
   question: PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-    multiple_choice_answers: PropTypes.oneOfType({
+    multiple_choice_answers: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       text: PropTypes.string.isRequired,
       position: PropTypes.number.isRequired,
-    }),
+    })),
+    maxChars: PropTypes.number,
   }).isRequired,
 };

@@ -45,32 +45,38 @@ export default class MultipleChoiceQuestion extends Component {
         {question.multiple_choice_answers.map(answer => (
           <ListGroup
             key={answer.id}
-            className="list"
-          >
+            className="list">
             <ListGroupItem className="group">
               <Button
                 value={answer.id}
                 bsStyle="primary"
                 onClick={this.handleChange}
                 className="choice"
-                block
-              >
+                block>
                 {answer.text}
               </Button>
             </ListGroupItem>
           </ListGroup>
-                    ))}
+        ))}
         <br />
         <ConditionalButton
           condition={this.state.showButton}
-          onClick={this.onClick}
-        />
+          onClick={this.onClick} />
       </div>
     );
   }
 }
 
 MultipleChoiceQuestion.propTypes = {
-  nextQuestion: PropTypes.func,
-  question: PropTypes.object,
+  nextQuestion: PropTypes.func.isRequired,
+  question: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    multiple_choice_answers: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      position: PropTypes.number.isRequired,
+    })),
+    maxChars: PropTypes.number,
+  }).isRequired,
 };

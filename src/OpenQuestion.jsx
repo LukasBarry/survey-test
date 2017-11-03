@@ -56,11 +56,11 @@ OpenQuestion.propTypes = {
   question: PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-    multiple_choice_answers: PropTypes.oneOfType({
+    multiple_choice_answers: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       text: PropTypes.string.isRequired,
       position: PropTypes.number.isRequired,
-    }),
+    })),
     maxChars: PropTypes.number,
   }).isRequired,
 };
