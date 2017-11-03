@@ -1,16 +1,8 @@
 module.exports = {
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
-    "plugins": [
-        "react"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "sourceType": "module"
-    },
-    "env": {
-        "browser": true,
-        "es6": true
-    },
+  "extends": "airbnb",
+  "rules": {
+    "react/jsx-closing-bracket-location": ["off", "after-props"],
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "react/jsx-filename-extension": "off",
+  }
 };
